@@ -1,3 +1,98 @@
+4.00.295 - 2020-2-28
+
+Maps, load/save/edit maps in a new map window. Lots of features! Options->'Show Map Window' to check it out
+Added system menu option "Don't dock while moving" for dockable windows.
+Fixed '/exit' command, previously it'd just crash at exit
+Fixed glitch where a saved stats window would randomly change background colors on restart
+
+4.00.294 - 2020-2-20
+
+Added 'Clear' Edit menu item for edit windows
+Added Tab Colors for Puppets
+Added 'Delay between lines (seconds)' for Smart Paste sends
+Changed Log file picker to remember the file extension after closing it
+Changed puppets to not see the Connected/Disconnected messages as it'd cause activity in their windows that wasn't useful
+Switched to PCRE 10.34 (from PCRE 8.x, exe grew by about 100k so hopefully regexes works a lot better!)
+Fixed Logging->'Starting from Top of Window' to be more reliable, as it was previously using the 'mouse cursor over' code to work.
+Fixed a glitch where right clicking in the input window/char notes/editor pane causes the window to scroll and selection to change
+Fixed a glitch when docking windows larger than the available space. Now they shrink down to fit
+Fixed hang/crash bug with the find dialog that happens if you have a 'New Content' marker visible, the output window is at maximum, and new text comes in
+Fixed a hang when || is in a regex (probably mid edit due to preview). 'a||b' is seen as 'a or nothing or b' and the nothing results in an infinite loop of nothing matches.
+
+4.00.293 - 2020-1-1
+
+Added '/ansireset' command to reset the current ansi state
+Fixed a docking layout restore bug, where horizontal windows could shift slightly
+Fixed a crash when using Find in the main output window
+
+4.00.292 - 2020-1-1
+
+Found a way to disable the os default beep sound when going out of bounds in the input window (either delete or with the cursor)
+Switched to the modern OS visual themes, dialogs shouldn't look like they're from Windows 95 anymore!
+Added '/newedit' to create a dedicated editing window (with a few options for it, like a title or having spellcheck enabled)
+Added character notes window (Options->Show Character Notes Window) to easily edit existing character info field
+Added crash detector that gives the option to generate a mini dump to send in (to make it much easier to share crashes)
+Added spawn trigger option 'Copy line instead of move' so that a copy can be left in the main output instead of only moving
+Added 'Set Background Color' option to stat windows
+Added Logging->'Starting From Top of Window...' menu item to start a log from anywhere in the output history
+Changed tab colors to be saved per character, not per tab visible at shutdown (behavior with puppets might be weird, let me know what it should do)
+Fixed spawn tab triggers to now honor the "Don't show as activity" setting
+Fixed a bug in smart paste where it was adding an extra line feed per line, resulting in LF CR LF sequences instead of the correct CR LF.
+Fixed the tiny drag image in the Worlds dialog, same issue that the trigger/macros/aliases had when dragging an image, forgot to fix this one too
+Fixed a hang when sending enormous blocks of text (>64K) and using restore logs (if what is sent is larger than the restore log size it would get stuck trying to make room forever)
+
+4.00.291 - 2019-11-30
+
+Added 'Only process child triggers during capture' to spawn triggers (very useful for things like WHO lists)
+Added 'Force IPv4' host address lookup to server pane
+Fixed bug where rearranging tabbed spawns causes activity notifications to be on the wrong tab
+Fixed time bug where December causes an invalid date to be used (was using modulo 12 math for the month, but the month started at 1 vs 0)
+
+4.00.290 - 2019-11-7
+
+Added sample pane to triggers/aliases/macros!
+Added regex syntax error messages while editing regexes
+Added test strings & test result to aliases (similar to triggers, but with the test result too)
+Added bringing current tab's floating panes to the top when switching tabs.
+Added auto scrolling of the trigger/aliases/macros views when dragging above/below the tree
+Improved Stat triggers to that \1 \2, etc.. works in the window title field
+Fixed drag image not appearing while dragging triggers/aliases/macros. Before fix it only worked on certain fonts/OSes (using OS function to draw them too)
+Fixed an issue with mouse wheel scrolling in a split text window, where it'd scroll by the wrong amount (bug was that the scrollbar wasn't updating properly)
+Fixed the keyboard macro dialog to not show typed letters unless it's replacing the key
+Fixed a minor annoyance where the imaging window might flicker briefly when restoring the window layout
+Fixed a bug where when editing triggers, having a blank Matcharoo regex caused the test string to stop updating properly
+Fixed a crash with aliases where a blank Matcharoo regex would crash!
+Fixed a minor glitch in the Trigger/Alias test string displays being hilighted wrong with multibyte characters
+Fixed a crash where if BeipMU.exe is launched by itself without a config.txt or Assets/DefaultConfig.txt it crashes at launch instead of using defaults
+
+4.00.289 - 2019-10-13
+
+Added /ping command to measure time from command send to server response (useful to measure network latency and server perf)
+Added 'Test Text' field in the triggers dialog to allow easy testing of what the Matcharoo will match on (with regex variable hilighting too!)
+Added File->'Load backup configuration...' to load the last backup configuration made (backup configs are made each time the app is updated)
+Added 'History Window - Toggle' to keyboard shortcuts
+Added 'Imaging Window - Toggle' to keyboard shortcuts
+Fixed extra 100ms network send/receive latency issue on the store version (not sure when this started, but it's gone now)
+
+4.00.288 - 2019-10-10
+
+Added tab completion, just press tab to search input history/output/spawns for words to autocomplete with.
+  Pressing tab after a space will suggest a next word in the same way
+  You can disable this behavior by setting the 'Input Window - Autocomplete' keyboard shortcut to nothing
+Fixed Alt+# display to not get stuck on after Alt+Tab/etc
+
+4.00.287 - 2019-10-3
+
+Added Stat Panes, shows integers, strings, or ranges to show character stats/attributes/etc. Values updated through trigger stat actions
+Added 'Content restored' messages to every spawn window, along with 'Connected' and 'Disconnected' messages to make things clearer
+Added colored tabs. You can set the color by right clicking on a tab, or by using the /tabcolor command (uses HTML style color #RRGGBB or a name)
+Changed the look of the taskbar & splitter bars, tabs now drag rearrange a lot nicer now
+Changed window titles to reverse the order of the items from server - character - puppet to puppet - character - server.
+Improved image viewer so it doesn't use a case sensitive search for images (for example, .jpg worked, but .JPG did not)
+Fixed a bug when docking windows where they would take up the entire client space, instead limit them to at most half of the space
+Fixed a bug when docking windows where they could not be docked on the outside edge, they'd always go to the next inner pane
+Fixed minor glitch where during Find in the output window, the scrollbar wouldn't move to match the shown text
+
 4.00.286 - 2019-9-6
 
 Added a dockable image viewer window that downloads and displays the last image URLs seen in the output
@@ -127,7 +222,7 @@ Fixed a bad bug where shutting down windows doesn't save the config file (this r
 Fixed a bug where the keyboard macro text length would let you paste 64k but it wouldn't persist it
 Fixed some Wine issues on Linux where there'd be multiple disconnect messages and an error message
 
-3.00.278 - 2019-1-6
+3.00.278 - 2019-1-6If yo
 
 Added spawn tabs! Just specify a 'Tab group' name for a spawn trigger and multiple spawn windows will appear as a single tabbed window.
 Fixed regex search bug, where it wasn't skipping the previous match properly, which caused extra invalid matches (for example quoted text would not match correctly)

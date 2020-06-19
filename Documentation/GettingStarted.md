@@ -57,6 +57,8 @@ The Character Info field is the same as the Server Info in the previous example 
 
 If you would like BeipMU to automatically save a log of your session every time you connect your character then click on Log File and browse to the location to save the log(s). You can also just manually type the filename into the text box beside the button as pictured above. Our logs will be saved to a file located at "C:\logs\beip.txt".
 
+Environment variables are processed in the log filename, so if you use Dropbox and want to save your files relative to it, you'd save a log as "%HOMEPATH%\Dropbox\MU Stuff\%server% - %character% - %date%.html" (crazy example just to show what you can do).
+
 If you would prefer BeipMU to include the current date in the log file name, select Append Current Date. Otherwise all logs for this character will be saved to the same file.
 
 Note that automated logging only works if you connect to your character as described in the next section.
@@ -180,4 +182,4 @@ By default, BeipMU will display date and time tooltips for each line of the outp
 
 ## Config Files
 
-The configuration file for BeipMU is saved as "config.txt" in the working directory. By default this is the %appdata%/BeipMU directory. If a config file is found in BeipMU's startup directory it will load and save to that file instead. For the Microsoft Store version BeipMU always saves it's data to the hidden application settings folder, which is why 'import/export configuration' options were added as these directories are not meant to be easily browsed by the user (on my system it's in something resembling C:\Users\Username\AppData\Local\Packages\94827398274.BeipMU_ixjzv98j98\LocalCache\Roaming\BeipMU).
+The configuration file for BeipMU is saved as "config.txt" in the working directory. By default this is the %appdata%/BeipMU directory. If a config file is found in BeipMU's startup directory it will load and save to that file instead. For the Microsoft Store version BeipMU always saves it's data to the hidden application settings folder, which is why 'import/export configuration' options were added as these directories are not meant to be easily browsed by the user (on my system it's in something resembling C:\Users\Username\AppData\Local\Packages\38939Ratman.BeipMU_xsyr3b6qthb5g\LocalCache\Roaming\BeipMU).
